@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
+const { PORT } = require("./config");
 const db = require("./db");
 
 const app = express();
@@ -10,10 +11,14 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 
-app.get("/", async (req, res) => {
-  res.status(200).send({ saludo: "holaaaaa!" });
-});
+const userRouter = require("./resources/user/user.router");
+app.use("/users", userRouter);
 
-app.listen(8888, () => {
-  console.log("API Mongo is listening on: 8888");
-});
+const startServer = async () => {
+  await db.connect();
+  app.listen(PORT, () => {
+    console.log(`API Mongo listening on :${PORT}`);
+  });
+};
+
+startServer();
