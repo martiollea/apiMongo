@@ -37,7 +37,7 @@ const updateOne = async (req, res) => {
 };
 
 const findOne = async (req, res) => {
-  const id = req.params;
+  const { id } = req.params;
   try {
     const doc = await User.findOne({ _id: id });
     if (!doc) {
@@ -51,7 +51,7 @@ const findOne = async (req, res) => {
 };
 
 const deleteOne = async (req, res) => {
-  const id = req.params;
+  const { id } = req.params;
   try {
     const doc = await User.findOneAndDelete({ _id: id }, { new: true });
     if (!doc) {
