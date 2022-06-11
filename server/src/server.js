@@ -14,6 +14,9 @@ app.use(express.json());
 const userRouter = require("./resources/user/user.router");
 app.use("/users", userRouter);
 
+const bookRouter = require("./resources/book/book.router");
+app.use("/books", bookRouter);
+
 const startServer = async () => {
   await db.connect();
   app.listen(PORT, () => {
