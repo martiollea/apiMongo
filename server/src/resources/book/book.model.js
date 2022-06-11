@@ -20,6 +20,11 @@ const bookSchema = new Schema(
       type: Date,
       required: true,
     },
+    user: {
+      type: Schema.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   { timestamps: false }
 );
